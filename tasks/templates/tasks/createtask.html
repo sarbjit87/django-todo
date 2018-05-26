@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="center-block" id="registeration-form-id">
+  <h2>New Task</h2>
+  <form method="post">
+      {% csrf_token %}
+      {{ form| crispy }}
+      <button type="submit" class="btn btn-success pull-right">Create Task</button>
+      <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div>
+    <h1 class="page-header">Tasks</h1>
+
+    <!-- BUTTON TO TRIGGER THE ACTION -->
+    <div class="row">
+      <div class="col-md-6">
+           <button type="button" class="btn btn-primary js-create-task" data-url="{% url 'tasks:task_create' %}">
+             <span class="glyphicon glyphicon-plus"></span>
+             New Task
+           </button>
+      </div>
+      <div class="col-md-6">
+           <form class="form pull-right form-inline" action="." method="GET">
+             <input class="form-control" type="text" name="q" value="{{ request.GET.q }}" placeholder="Search...">
+             <button type="submit" class="btn btn-default">Search</button>
+           </form>
+      </div>
+    </div>
+    <br><br>
+    <table class="table" id="task-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Task</th>
+          <th>Owner</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% include 'tasks/partial_task_list.html' %}
+      </tbody>
+    </table>
+
+    <!-- THE MODAL WE WILL BE USING -->
+    <div class="modal fade" id="modal-task">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% for obj in object_list %}
+  <tr>
+    <td>{{ obj.id }}</td>
+    <td>{{ obj.name }}</td>
+    <td>{{ obj.owner }}</td>
+    <td style="width: 150px">
+      <button type="button"
+              class="btn btn-warning btn-sm js-update-task"
+              data-url="{% url 'tasks:task_update' obj.id %}">
+        <span class="glyphicon glyphicon-pencil"></span> Edit
+      </button>
+      <button type="button"
+              class="btn btn-danger btn-sm js-delete-task"
+              data-url="{% url 'tasks:task_delete' obj.id %}">
+        <span class="glyphicon glyphicon-trash"></span> Delete
+      </button>
+  </tr>
+{% empty %}
+  <tr>
+    <td colspan="7" class="text-center bg-warning">No task</td>
+  </tr>
+{% endfor %}
